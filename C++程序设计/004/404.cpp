@@ -93,9 +93,10 @@ bool bigInt:: operator == (const bigInt & operand2){
 bigInt bigInt::operator+(const bigInt & operand2){
     bigInt result;
     int carry =0;
-    for(unsigned long i=0;i<len;i++){
-        carry = (carry + digit[i] + operand2.digit[i])/10;
+    for(unsigned long i=0;i<len||i<operand2.len;i++){
         result.digit[result.len++] = (carry + digit[i] + operand2.digit[i])%10;
+        carry = (carry + digit[i] + operand2.digit[i])/10;
+
     }
     if(carry!=0)
         result.digit[result.len++]=carry;
